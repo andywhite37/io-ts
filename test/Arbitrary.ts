@@ -114,7 +114,16 @@ declare module 'fp-ts/lib/HKT' {
   }
 }
 
-export const Schemable: S.Schemable1<URI> & S.WithUnknownContainers1<URI> & S.WithUnion1<URI> & S.WithRefine1<URI> = {
+export const Schemable: S.Schemable1<URI> &
+  S.WithLiteral1<URI> &
+  S.WithString1<URI> &
+  S.WithNumber1<URI> &
+  S.WithBoolean1<URI> &
+  S.WithNullable1<URI> &
+  S.WithType1<URI> &
+  S.WithUnknownContainers1<URI> &
+  S.WithUnion1<URI> &
+  S.WithRefine1<URI> = {
   URI,
   literal,
   string,

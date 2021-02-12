@@ -457,7 +457,13 @@ export const Category: Category2<URI> = {
  * @category instances
  * @since 2.2.8
  */
-export const Schemable: S.Schemable2C<URI, unknown> = {
+export const Schemable: S.Schemable2C<URI, unknown> &
+  S.WithLiteral2C<URI, unknown> &
+  S.WithString2C<URI, unknown> &
+  S.WithNumber2C<URI, unknown> &
+  S.WithBoolean2C<URI, unknown> &
+  S.WithNullable2C<URI, unknown> &
+  S.WithType2C<URI, unknown> = {
   URI,
   literal,
   string,

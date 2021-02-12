@@ -14,15 +14,43 @@ import {
   WithUnknownContainers,
   WithUnknownContainers1,
   Schemable2C,
+  WithLiteral,
+  WithNumber,
+  WithString,
+  WithBoolean,
   WithUnknownContainers2C,
-  WithUnion2C
+  WithUnion2C,
+  WithNullable,
+  WithType,
+  WithString2C,
+  WithBoolean2C,
+  WithType2C,
+  WithNullable2C,
+  WithNumber2C,
+  WithLiteral2C,
+  WithString1,
+  WithNumber1,
+  WithLiteral1,
+  WithBoolean1,
+  WithNullable1,
+  WithType1
 } from '../src/Schemable'
 import * as _ from '../src/Type'
 import * as A from './Arbitrary'
 import { pipe } from 'fp-ts/lib/pipeable'
 
 interface Schema<A> {
-  <S>(S: Schemable<S> & WithUnknownContainers<S> & WithUnion<S>): HKT<S, A>
+  <S>(
+    S: Schemable<S> &
+      WithLiteral<S> &
+      WithString<S> &
+      WithNumber<S> &
+      WithBoolean<S> &
+      WithNullable<S> &
+      WithType<S> &
+      WithUnknownContainers<S> &
+      WithUnion<S>
+  ): HKT<S, A>
 }
 
 function make<A>(f: Schema<A>): Schema<A> {
@@ -30,10 +58,29 @@ function make<A>(f: Schema<A>): Schema<A> {
 }
 
 const interpreter: {
-  <S extends URIS2>(S: Schemable2C<S, unknown> & WithUnknownContainers2C<S, unknown> & WithUnion2C<S, unknown>): <A>(
-    schema: Schema<A>
-  ) => Kind2<S, unknown, A>
-  <S extends URIS>(S: Schemable1<S> & WithUnknownContainers1<S> & WithUnion1<S>): <A>(schema: Schema<A>) => Kind<S, A>
+  <S extends URIS2>(
+    S: Schemable2C<S, unknown> &
+      WithString2C<S, unknown> &
+      WithBoolean2C<S, unknown> &
+      WithType2C<S, unknown> &
+      WithNullable2C<S, unknown> &
+      WithNumber2C<S, unknown> &
+      WithLiteral2C<S, unknown> &
+      WithUnknownContainers2C<S, unknown> &
+      WithUnion2C<S, unknown>
+  ): <A>(schema: Schema<A>) => Kind2<S, unknown, A>
+
+  <S extends URIS>(
+    S: Schemable1<S> &
+      WithString1<S> &
+      WithNumber1<S> &
+      WithLiteral1<S> &
+      WithBoolean1<S> &
+      WithNullable1<S> &
+      WithType1<S> &
+      WithUnknownContainers1<S> &
+      WithUnion1<S>
+  ): <A>(schema: Schema<A>) => Kind<S, A>
 } = (S: any) => (schema: any) => schema(S)
 
 function check<A>(schema: Schema<A>, type: t.Type<A>): void {

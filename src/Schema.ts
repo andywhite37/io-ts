@@ -8,8 +8,8 @@
  *
  * @since 2.2.0
  */
-import { HKT, Kind, Kind2, URIS, URIS2 } from 'fp-ts/lib/HKT'
-import { memoize, Schemable, Schemable1, Schemable2C } from './Schemable'
+// import { HKT, Kind, Kind2, URIS, URIS2 } from 'fp-ts/lib/HKT'
+// import { memoize, Schemable, Schemable1, Schemable2C } from './Schemable'
 
 // -------------------------------------------------------------------------------------
 // model
@@ -19,9 +19,11 @@ import { memoize, Schemable, Schemable1, Schemable2C } from './Schemable'
  * @category model
  * @since 2.2.0
  */
+/*
 export interface Schema<A> {
   <S>(S: Schemable<S>): HKT<S, A>
 }
+*/
 
 // -------------------------------------------------------------------------------------
 // constructors
@@ -31,9 +33,11 @@ export interface Schema<A> {
  * @category constructors
  * @since 2.2.0
  */
+/*
 export function make<A>(schema: Schema<A>): Schema<A> {
   return memoize(schema)
 }
+*/
 
 // -------------------------------------------------------------------------------------
 // utils
@@ -42,13 +46,15 @@ export function make<A>(schema: Schema<A>): Schema<A> {
 /**
  * @since 2.2.0
  */
-export type TypeOf<S> = S extends Schema<infer A> ? A : never
+//export type TypeOf<S> = S extends Schema<infer A> ? A : never
 
 /**
  * @since 2.2.3
  */
+/*
 export function interpreter<S extends URIS2>(S: Schemable2C<S, unknown>): <A>(schema: Schema<A>) => Kind2<S, unknown, A>
 export function interpreter<S extends URIS>(S: Schemable1<S>): <A>(schema: Schema<A>) => Kind<S, A>
 export function interpreter<S>(S: Schemable<S>): <A>(schema: Schema<A>) => HKT<S, A> {
   return (schema) => schema(S)
 }
+*/

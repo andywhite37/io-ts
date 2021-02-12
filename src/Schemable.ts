@@ -21,12 +21,14 @@ export type Literal = string | number | boolean | null
  */
 export interface Schemable<S> {
   readonly URI: S
-  readonly literal: <A extends readonly [Literal, ...Array<Literal>]>(...values: A) => HKT<S, A[number]>
-  readonly string: HKT<S, string>
-  readonly number: HKT<S, number>
-  readonly boolean: HKT<S, boolean>
-  readonly nullable: <A>(or: HKT<S, A>) => HKT<S, null | A>
-  readonly type: <A>(properties: { [K in keyof A]: HKT<S, A[K]> }) => HKT<S, { [K in keyof A]: A[K] }>
+  // readonly literal: <A extends readonly [Literal, ...Array<Literal>]>(...values: A) => HKT<S, A[number]>
+  // readonly string: HKT<S, string>
+  // readonly number: HKT<S, number>
+  // readonly boolean: HKT<S, boolean>
+  // readonly nullable: <A>(or: HKT<S, A>) => HKT<S, null | A>
+  // readonly type: <A>(properties: { [K in keyof A]: HKT<S, A[K]> }) => HKT<S, { [K in keyof A]: A[K] }>
+
+  // TODO: split out the rest of these
   readonly partial: <A>(properties: { [K in keyof A]: HKT<S, A[K]> }) => HKT<S, Partial<{ [K in keyof A]: A[K] }>>
   readonly record: <A>(codomain: HKT<S, A>) => HKT<S, Record<string, A>>
   readonly array: <A>(item: HKT<S, A>) => HKT<S, Array<A>>
@@ -38,17 +40,43 @@ export interface Schemable<S> {
   readonly lazy: <A>(id: string, f: () => HKT<S, A>) => HKT<S, A>
 }
 
+export interface WithLiteral<S> {
+  readonly literal: <A extends readonly [Literal, ...Array<Literal>]>(...values: A) => HKT<S, A[number]>
+}
+
+export interface WithString<S> {
+  readonly string: HKT<S, string>
+}
+
+export interface WithNumber<S> {
+  readonly number: HKT<S, number>
+}
+
+export interface WithBoolean<S> {
+  readonly boolean: HKT<S, boolean>
+}
+
+export interface WithNullable<S> {
+  readonly nullable: <A>(or: HKT<S, A>) => HKT<S, null | A>
+}
+
+export interface WithType<S> {
+  readonly type: <A>(properties: { [K in keyof A]: HKT<S, A[K]> }) => HKT<S, { [K in keyof A]: A[K] }>
+}
+
 /**
  * @since 2.2.3
  */
 export interface Schemable1<S extends URIS> {
   readonly URI: S
-  readonly literal: <A extends readonly [Literal, ...Array<Literal>]>(...values: A) => Kind<S, A[number]>
-  readonly string: Kind<S, string>
-  readonly number: Kind<S, number>
-  readonly boolean: Kind<S, boolean>
-  readonly nullable: <A>(or: Kind<S, A>) => Kind<S, null | A>
-  readonly type: <A>(properties: { [K in keyof A]: Kind<S, A[K]> }) => Kind<S, { [K in keyof A]: A[K] }>
+  // readonly literal: <A extends readonly [Literal, ...Array<Literal>]>(...values: A) => Kind<S, A[number]>
+  // readonly string: Kind<S, string>
+  // readonly number: Kind<S, number>
+  // readonly boolean: Kind<S, boolean>
+  // readonly nullable: <A>(or: Kind<S, A>) => Kind<S, null | A>
+  // readonly type: <A>(properties: { [K in keyof A]: Kind<S, A[K]> }) => Kind<S, { [K in keyof A]: A[K] }>
+
+  // TODO: split out the rest of these
   readonly partial: <A>(properties: { [K in keyof A]: Kind<S, A[K]> }) => Kind<S, Partial<{ [K in keyof A]: A[K] }>>
   readonly record: <A>(codomain: Kind<S, A>) => Kind<S, Record<string, A>>
   readonly array: <A>(item: Kind<S, A>) => Kind<S, Array<A>>
@@ -60,17 +88,43 @@ export interface Schemable1<S extends URIS> {
   readonly lazy: <A>(id: string, f: () => Kind<S, A>) => Kind<S, A>
 }
 
+export interface WithLiteral1<S extends URIS> {
+  readonly literal: <A extends readonly [Literal, ...Array<Literal>]>(...values: A) => Kind<S, A[number]>
+}
+
+export interface WithString1<S extends URIS> {
+  readonly string: Kind<S, string>
+}
+
+export interface WithNumber1<S extends URIS> {
+  readonly number: Kind<S, number>
+}
+
+export interface WithBoolean1<S extends URIS> {
+  readonly boolean: Kind<S, boolean>
+}
+
+export interface WithNullable1<S extends URIS> {
+  readonly nullable: <A>(or: Kind<S, A>) => Kind<S, null | A>
+}
+
+export interface WithType1<S extends URIS> {
+  readonly type: <A>(properties: { [K in keyof A]: Kind<S, A[K]> }) => Kind<S, { [K in keyof A]: A[K] }>
+}
+
 /**
  * @since 2.2.8
  */
 export interface Schemable2C<S extends URIS2, E> {
   readonly URI: S
-  readonly literal: <A extends readonly [Literal, ...Array<Literal>]>(...values: A) => Kind2<S, E, A[number]>
-  readonly string: Kind2<S, E, string>
-  readonly number: Kind2<S, E, number>
-  readonly boolean: Kind2<S, E, boolean>
-  readonly nullable: <A>(or: Kind2<S, E, A>) => Kind2<S, E, null | A>
-  readonly type: <A>(properties: { [K in keyof A]: Kind2<S, E, A[K]> }) => Kind2<S, E, { [K in keyof A]: A[K] }>
+  // readonly literal: <A extends readonly [Literal, ...Array<Literal>]>(...values: A) => Kind2<S, E, A[number]>
+  // readonly string: Kind2<S, E, string>
+  // readonly number: Kind2<S, E, number>
+  // readonly boolean: Kind2<S, E, boolean>
+  // readonly nullable: <A>(or: Kind2<S, E, A>) => Kind2<S, E, null | A>
+  // readonly type: <A>(properties: { [K in keyof A]: Kind2<S, E, A[K]> }) => Kind2<S, E, { [K in keyof A]: A[K] }>
+
+  // TODO: split out the rest of these
   readonly partial: <A>(
     properties: { [K in keyof A]: Kind2<S, E, A[K]> }
   ) => Kind2<S, E, Partial<{ [K in keyof A]: A[K] }>>
@@ -84,6 +138,30 @@ export interface Schemable2C<S extends URIS2, E> {
     tag: T
   ) => <A>(members: { [K in keyof A]: Kind2<S, E, A[K] & Record<T, K>> }) => Kind2<S, E, A[keyof A]>
   readonly lazy: <A>(id: string, f: () => Kind2<S, E, A>) => Kind2<S, E, A>
+}
+
+export interface WithLiteral2C<S extends URIS2, E> {
+  readonly literal: <A extends readonly [Literal, ...Array<Literal>]>(...values: A) => Kind2<S, E, A[number]>
+}
+
+export interface WithString2C<S extends URIS2, E> {
+  readonly string: Kind2<S, E, string>
+}
+
+export interface WithNumber2C<S extends URIS2, E> {
+  readonly number: Kind2<S, E, number>
+}
+
+export interface WithBoolean2C<S extends URIS2, E> {
+  readonly boolean: Kind2<S, E, boolean>
+}
+
+export interface WithNullable2C<S extends URIS2, E> {
+  readonly nullable: <A>(or: Kind2<S, E, A>) => Kind2<S, E, null | A>
+}
+
+export interface WithType2C<S extends URIS2, E> {
+  readonly type: <A>(properties: { [K in keyof A]: Kind2<S, E, A[K]> }) => Kind2<S, E, { [K in keyof A]: A[K] }>
 }
 
 /**

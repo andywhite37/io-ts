@@ -11,6 +11,13 @@ describe('Eq', () => {
     assert.deepStrictEqual(eq.equals('a', null), false)
   })
 
+  it('string', () => {
+    const eq = E.Schemable.literal('a', null)
+    assert.deepStrictEqual(eq.equals('a', 'a'), true)
+    assert.deepStrictEqual(eq.equals(null, null), true)
+    assert.deepStrictEqual(eq.equals('a', null), false)
+  })
+
   it('UnknownArray', () => {
     const eq = E.UnknownArray
     assert.deepStrictEqual(eq.equals(['a'], ['a']), true)

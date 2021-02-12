@@ -10,7 +10,20 @@
  */
 import { Refinement } from 'fp-ts/lib/function'
 import { pipe } from 'fp-ts/lib/pipeable'
-import { Literal, memoize, Schemable1, WithRefine1, WithUnion1, WithUnknownContainers1 } from './Schemable'
+import {
+  Literal,
+  memoize,
+  Schemable1,
+  WithBoolean1,
+  WithLiteral1,
+  WithNullable1,
+  WithNumber1,
+  WithRefine1,
+  WithString1,
+  WithType1,
+  WithUnion1,
+  WithUnknownContainers1
+} from './Schemable'
 
 // -------------------------------------------------------------------------------------
 // model
@@ -301,7 +314,13 @@ declare module 'fp-ts/lib/HKT' {
  * @category instances
  * @since 2.2.8
  */
-export const Schemable: Schemable1<URI> = {
+export const Schemable: Schemable1<URI> &
+  WithLiteral1<URI> &
+  WithString1<URI> &
+  WithNumber1<URI> &
+  WithBoolean1<URI> &
+  WithNullable1<URI> &
+  WithType1<URI> = {
   URI,
   literal,
   string,

@@ -11,7 +11,18 @@
 import * as A from 'fp-ts/lib/Array'
 import * as E from 'fp-ts/lib/Eq'
 import * as R from 'fp-ts/lib/Record'
-import { memoize, Schemable1, WithRefine1, WithUnknownContainers1 } from './Schemable'
+import {
+  memoize,
+  Schemable1,
+  WithBoolean1,
+  WithLiteral1,
+  WithNullable1,
+  WithNumber1,
+  WithRefine1,
+  WithString1,
+  WithType1,
+  WithUnknownContainers1
+} from './Schemable'
 import Eq = E.Eq
 
 // -------------------------------------------------------------------------------------
@@ -181,7 +192,13 @@ export function lazy<A>(f: () => Eq<A>): Eq<A> {
  * @category instances
  * @since 2.2.8
  */
-export const Schemable: Schemable1<E.URI> = {
+export const Schemable: Schemable1<E.URI> &
+  WithLiteral1<E.URI> &
+  WithString1<E.URI> &
+  WithNumber1<E.URI> &
+  WithBoolean1<E.URI> &
+  WithNullable1<E.URI> &
+  WithType1<E.URI> = {
   URI: E.URI,
   literal: () => E.eqStrict,
   string,
